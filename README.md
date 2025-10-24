@@ -2,7 +2,19 @@
 
 ## 💡 대장부(Captain Book) 프로젝트 - 트러블 슈팅 (현재 약 80개)
 
-<br><br>
+<img width="150" height="150" alt="DaeJangBu-radius-logo" src="https://github.com/user-attachments/assets/cb7f16af-1c36-4f55-b2e9-54b7f24ff938" />
+
+---
+
+### 리포지터리 링크
+
+* **트러블 슈팅 :** https://github.com/yoda-yoda/project5-captain-book-trouble-shooting
+* **소개 링크 :** https://github.com/yoda-yoda/project5-captain-book-overview
+* **backend (spring) :** https://github.com/yoda-yoda/project5-captain-book-backend
+* **frontend (react) :** https://github.com/yoda-yoda/project5-captain-book-frontend
+
+---
+
 
 # 트러블슈팅1
 
