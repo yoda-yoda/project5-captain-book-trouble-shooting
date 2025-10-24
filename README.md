@@ -1,8 +1,8 @@
 # 5차 프로젝트 - **대장부(Captain Book) 개인프로젝트 (captain book project)**
 
-## 💡 대장부(Captain Book) 프로젝트 - 트러블 슈팅 (현재 약 80개)
+## 💡트러블 슈팅 (현재 약 80개)
 
-<img width="150" height="150" alt="DaeJangBu-radius-logo" src="https://github.com/user-attachments/assets/cb7f16af-1c36-4f55-b2e9-54b7f24ff938" />
+<img width="120" height="120" alt="DaeJangBu-radius-logo" src="https://github.com/user-attachments/assets/cb7f16af-1c36-4f55-b2e9-54b7f24ff938" />
 
 ---
 
