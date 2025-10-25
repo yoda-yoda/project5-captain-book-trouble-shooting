@@ -122,7 +122,7 @@ public String calendarItemDelete(@PathVariable Long calendarItemId, Long calenda
 
 ### 문제:
 
-세부항목에 대해 수정 버튼을 눌렀다.
+달력의 세부항목에 대해 수정 버튼을 눌렀다.
 
 그러나 오류는 없었지만 수정되지 않은 기존 값이 출력되었다.
 
@@ -130,15 +130,19 @@ public String calendarItemDelete(@PathVariable Long calendarItemId, Long calenda
 
 컨트롤러 메서드 내에서 log를 확인해보았다.
 
-컨트롤러 내의 업데이트 메서드가 끝나고나서 log를 출력해보면정상적으로 수정된 값이 출력되었다.
+컨트롤러 내의 업데이트 메서드가 끝나고나서 log를 출력해보면 정상적으로 수정된 값이 출력되었다.
 
 그리고 업데이트 메서드가 끝나고 리다이렉트로 조회 하는 컨트롤러 메서드로 가서 log를 출력해보면 기존값이 출력되었다.
 
+트랜잭션 문제인것 같다는 생각이 떠올랐다.
+
 ### 원인:
 
-지연로딩과 트랜젝션 문제인것같다.
+의도치않은 트랜잭션 처리를 원인으로 판단하였다.
 
 ### 해결:
+
+서비스 계층 메서드에 @Transactional 어노테이션을 활용하며 테스트 진행후 해결하였다. 
 
 ---
 
@@ -583,10 +587,6 @@ window.addEventListener('load', () => {
 
 버튼을 실제 DOM 요소로 추출하려 하는데, 쿼리셀렉터로 직접 추출하면 종종 렌더링 시점에 따라 null 값이 들어갈 수도 있어서 `useRef` 훅을 사용해 Dom을 추출하고 같은 참조 객체를 자식 컴포넌트의 props로 넘기는 방식으로 처리하려했지만 형제관계여서 불가능했다.
 
-### 원인:
-
-추출할 Dom 요소가 부모-자식 컴포넌트 관계가 아니라 형제관계여서 props로 넘길수가없었다.
-
 ### 모색:
 
 (1) 우선 형제 컴포넌트에서 `useRef` 로 연결한 DOM요소를 또다른 형제컴포넌트로 넘기는 일반적인 방법을 찾지못해서 형제 컴포넌트를 부모 컴포넌트에 포함하도록 바꾸려했다.
@@ -598,6 +598,12 @@ window.addEventListener('load', () => {
 (3) 그런데 `useRef` 훅을 이용하고싶었고, 또한 해당 Dom 요소를 안전하게 추출한다고해도 이벤트리스너 등록방식보다 React의 `onClick` 방식이 더 안전했다.
 
 그렇다면 `onClick` 핸들러를 부모 컴포넌트나 형제 컴포넌트에서 선언해야하는데, 핸들러 로직은 다른곳에 있었기때문에 등록하기가 부적절했다.
+
+
+### 원인:
+
+추출할 Dom 요소가 부모-자식 컴포넌트 관계가 아니라 형제관계여서 props로 넘길수가없었다.
+
 
 ### 해결:
 
@@ -2099,7 +2105,7 @@ public void commence(HttpServletRequest request,
 
 ---
 
-# (트러블 슈팅 52)
+# 트러블 슈팅 52
 
 ### 문제:
 
@@ -2123,7 +2129,7 @@ show()와 hide() 메서드로 조작하는 방식이었는데, 이때 여러 인
 
 ---
 
-# (트러블 슈팅 53)
+# 트러블 슈팅 53
 
 ### 문제:
 
@@ -2149,7 +2155,7 @@ setCatchFlag 값을 setCatchFlag(() => Date.now()) 처럼 바꿔서 항상 다�
 
 ---
 
-# (트러블 슈팅 54)
+# 트러블 슈팅 54
 
 ### 문제:
 
@@ -2184,7 +2190,7 @@ if (finalErrorObject.errorStatus === 401) {
 
 ---
 
-# (트러블 슈팅 55)
+# 트러블 슈팅 55
 
 ### 문제:
 
@@ -2220,7 +2226,7 @@ uniqueConstraints = @UniqueConstraint(columnNames = {"provider", "providerId"})
 
 ---
 
-# (트러블 슈팅 56)
+# 트러블 슈팅 56
 
 ### 문제:
 
@@ -2282,7 +2288,7 @@ MySQL 엔진의 기본 격리 단계가 "REPEATABLE READ" 단계인것이 원인
 
 ---
 
-# (트러블 슈팅 57)
+# 트러블 슈팅 57
 
 ### 문제:
 
@@ -2320,7 +2326,7 @@ Long currentMemberId = authService.getOAuthCurrentMemberId(oauth2User);
 
 ---
 
-# (트러블 슈팅 58)
+# 트러블 슈팅 58
 
 ### 문제:
 
@@ -2352,7 +2358,7 @@ deleteByIdAndMemberId를 deleteByIdAndMember_Id로 바꿔봤지만 여전히 똑
 
 ---
 
-# (트러블 슈팅 59)
+# 트러블 슈팅 59
 
 ### 문제:
 
@@ -2398,7 +2404,7 @@ find 메서드로 찾은 후에 delete 처리를 하는 경우보다(DB쿼리가
 
 ---
 
-# (트러블 슈팅 60)
+# 트러블 슈팅 60
 
 ### 문제:
 
@@ -2456,7 +2462,7 @@ await fetchHandler(`/api/calendar/item/${calendarItemResponseDto.id}/update`, "P
 
 ---
 
-# (트러블 슈팅 61)
+# 트러블 슈팅 61
 
 ### 문제:
 
@@ -2480,7 +2486,7 @@ serviceSection 객체를 current에 담아 공유하여 비슷한 원리로 해�
 
 ---
 
-# (트러블 슈팅 62)
+# 트러블 슈팅 62
 
 ### 문제:
 
@@ -2510,7 +2516,7 @@ const token = Cookies.get('XSRF-TOKEN'); 과 같이 활용하여 직접 파싱 �
 
 ---
 
-# (트러블 슈팅 63)
+# 트러블 슈팅 63
 
 ### 문제:
 
@@ -2540,7 +2546,7 @@ const token = Cookies.get('XSRF-TOKEN'); 과 같이 활용하여 직접 파싱 �
 
 ---
 
-# (트러블 슈팅 64)
+# 트러블 슈팅 64
 
 ### 문제:
 
